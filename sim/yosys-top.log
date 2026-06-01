@@ -1,0 +1,887 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33+6 (git sha1 41b34a193, x86_64-conda-linux-gnu-cc 11.2.0 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -fdebug-prefix-map=/root/conda-eda/conda-eda/workdir/conda-env/conda-bld/yosys_1694128612374/work=/usr/local/src/conda/yosys-0.33_7_g41b34a193 -fdebug-prefix-map=/home/willdev/miniconda3/envs/digital=/usr/local/src/conda-prefix -fPIC -Os -fno-merge-constants)
+
+
+-- Parsing `./top.v' using frontend ` -vlog2k' --
+
+1. Executing Verilog-2005 frontend: ./top.v
+Parsing Verilog input from `./top.v' to AST representation.
+Storing AST representation for module `$abstract\top'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./flipflop.v' using frontend ` -vlog2k' --
+
+2. Executing Verilog-2005 frontend: ./flipflop.v
+Parsing Verilog input from `./flipflop.v' to AST representation.
+Storing AST representation for module `$abstract\flipflop'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./render.v' using frontend ` -vlog2k' --
+
+3. Executing Verilog-2005 frontend: ./render.v
+Parsing Verilog input from `./render.v' to AST representation.
+Storing AST representation for module `$abstract\render'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./vga.v' using frontend ` -vlog2k' --
+
+4. Executing Verilog-2005 frontend: ./vga.v
+Parsing Verilog input from `./vga.v' to AST representation.
+Storing AST representation for module `$abstract\vga'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./pll25mhz.v' using frontend ` -vlog2k' --
+
+5. Executing Verilog-2005 frontend: ./pll25mhz.v
+Parsing Verilog input from `./pll25mhz.v' to AST representation.
+Storing AST representation for module `$abstract\pll25mhz'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./pulsecounter.v' using frontend ` -vlog2k' --
+
+6. Executing Verilog-2005 frontend: ./pulsecounter.v
+Parsing Verilog input from `./pulsecounter.v' to AST representation.
+Storing AST representation for module `$abstract\pulsecounter'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./pad.v' using frontend ` -vlog2k' --
+
+7. Executing Verilog-2005 frontend: ./pad.v
+Parsing Verilog input from `./pad.v' to AST representation.
+Storing AST representation for module `$abstract\pad'.
+Successfully finished Verilog frontend.
+
+-- Parsing `./ballhitbox.v' using frontend ` -vlog2k' --
+
+8. Executing Verilog-2005 frontend: ./ballhitbox.v
+Parsing Verilog input from `./ballhitbox.v' to AST representation.
+Storing AST representation for module `$abstract\ballhitbox'.
+Successfully finished Verilog frontend.
+
+-- Running command `prep -top top; hierarchy -check; proc; write_json sim/top.json' --
+
+9. Executing PREP pass.
+
+9.1. Executing HIERARCHY pass (managing design hierarchy).
+
+9.2. Executing AST frontend in derive mode using pre-parsed AST for module `\top'.
+Generating RTLIL representation for module `\top'.
+
+9.2.1. Analyzing design hierarchy..
+Top module:  \top
+
+9.2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\flipflop'.
+Generating RTLIL representation for module `\flipflop'.
+
+9.2.3. Executing AST frontend in derive mode using pre-parsed AST for module `\render'.
+Generating RTLIL representation for module `\render'.
+
+9.2.4. Executing AST frontend in derive mode using pre-parsed AST for module `\pulsecounter'.
+Generating RTLIL representation for module `\pulsecounter'.
+
+9.2.5. Executing AST frontend in derive mode using pre-parsed AST for module `\ballhitbox'.
+Generating RTLIL representation for module `\ballhitbox'.
+
+9.2.6. Executing AST frontend in derive mode using pre-parsed AST for module `\pad'.
+Generating RTLIL representation for module `\pad'.
+
+9.2.7. Executing AST frontend in derive mode using pre-parsed AST for module `\vga'.
+Generating RTLIL representation for module `\vga'.
+
+9.2.8. Analyzing design hierarchy..
+Top module:  \top
+Used module:     \flipflop
+Used module:     \render
+Used module:     \pulsecounter
+Used module:     \ballhitbox
+Used module:     \pad
+Used module:     \vga
+
+9.2.9. Analyzing design hierarchy..
+Top module:  \top
+Used module:     \flipflop
+Used module:     \render
+Used module:     \pulsecounter
+Used module:     \ballhitbox
+Used module:     \pad
+Used module:     \vga
+Removing unused module `$abstract\ballhitbox'.
+Removing unused module `$abstract\pad'.
+Removing unused module `$abstract\pulsecounter'.
+Removing unused module `$abstract\pll25mhz'.
+Removing unused module `$abstract\vga'.
+Removing unused module `$abstract\render'.
+Removing unused module `$abstract\flipflop'.
+Removing unused module `$abstract\top'.
+Removed 8 unused modules.
+
+9.3. Executing PROC pass (convert processes to netlists).
+
+9.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+9.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$./pad.v:14$242 in module pad.
+Marked 8 switch rules as full_case in process $proc$./ballhitbox.v:42$229 in module ballhitbox.
+Marked 2 switch rules as full_case in process $proc$./pulsecounter.v:14$209 in module pulsecounter.
+Marked 2 switch rules as full_case in process $proc$./render.v:83$129 in module render.
+Marked 6 switch rules as full_case in process $proc$./render.v:47$127 in module render.
+Marked 1 switch rules as full_case in process $proc$./flipflop.v:8$1 in module flipflop.
+Marked 3 switch rules as full_case in process $proc$./vga.v:19$251 in module vga.
+Removed a total of 0 dead cases.
+
+9.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 5 assignments to connections.
+
+9.3.4. Executing PROC_INIT pass (extract init attributes).
+
+9.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_i in `\pad.$proc$./pad.v:14$242'.
+Found async reset \rst_i in `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+Found async reset \rst_i in `\pulsecounter.$proc$./pulsecounter.v:14$209'.
+Found async reset \rst_i in `\flipflop.$proc$./flipflop.v:8$1'.
+Found async reset \rst_i in `\vga.$proc$./vga.v:19$251'.
+
+9.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+9.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\pad.$proc$./pad.v:14$242'.
+     1/2: $0\contador[19:0]
+     2/2: $0\pady_o[9:0]
+Creating decoders for process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+     1/9: $0\estado_juego[0:0]
+     2/9: $0\pausa_count[24:0]
+     3/9: $0\speed_cnt[21:0]
+     4/9: $0\vy[9:0]
+     5/9: $0\vx[9:0]
+     6/9: $0\score2[0:0]
+     7/9: $0\score1[0:0]
+     8/9: $0\bally_o[9:0]
+     9/9: $0\ballx_o[9:0]
+Creating decoders for process `\pulsecounter.$proc$./pulsecounter.v:14$209'.
+     1/2: $0\s_anterior[0:0]
+     2/2: $0\count_o[3:0]
+Creating decoders for process `\render.$proc$./render.v:83$129'.
+     1/2: $1\is_score_2[0:0]
+     2/2: $1\is_score_1[0:0]
+Creating decoders for process `\render.$proc$./render.v:47$127'.
+     1/18: $6\b_o[0:0]
+     2/18: $6\g_o[0:0]
+     3/18: $6\r_o[0:0]
+     4/18: $5\b_o[0:0]
+     5/18: $5\g_o[0:0]
+     6/18: $5\r_o[0:0]
+     7/18: $4\b_o[0:0]
+     8/18: $4\g_o[0:0]
+     9/18: $4\r_o[0:0]
+    10/18: $3\b_o[0:0]
+    11/18: $3\g_o[0:0]
+    12/18: $3\r_o[0:0]
+    13/18: $2\b_o[0:0]
+    14/18: $2\g_o[0:0]
+    15/18: $2\r_o[0:0]
+    16/18: $1\b_o[0:0]
+    17/18: $1\g_o[0:0]
+    18/18: $1\r_o[0:0]
+Creating decoders for process `\flipflop.$proc$./flipflop.v:8$1'.
+     1/1: $0\dato_o[0:0]
+Creating decoders for process `\vga.$proc$./vga.v:19$251'.
+     1/2: $0\pixelx_o[9:0]
+     2/2: $0\pixely_o[9:0]
+
+9.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\render.\is_score_1' from process `\render.$proc$./render.v:83$129'.
+No latch inferred for signal `\render.\is_score_2' from process `\render.$proc$./render.v:83$129'.
+No latch inferred for signal `\render.\r_o' from process `\render.$proc$./render.v:47$127'.
+No latch inferred for signal `\render.\g_o' from process `\render.$proc$./render.v:47$127'.
+No latch inferred for signal `\render.\b_o' from process `\render.$proc$./render.v:47$127'.
+
+9.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\pad.\pady_o' using process `\pad.$proc$./pad.v:14$242'.
+  created $adff cell `$procdff$613' with positive edge clock and positive level reset.
+Creating register for signal `\pad.\contador' using process `\pad.$proc$./pad.v:14$242'.
+  created $adff cell `$procdff$614' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\ballx_o' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$615' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\bally_o' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$616' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\score1' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$617' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\score2' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$618' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\vx' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$619' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\vy' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$620' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\speed_cnt' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$621' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\pausa_count' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$622' with positive edge clock and positive level reset.
+Creating register for signal `\ballhitbox.\estado_juego' using process `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+  created $adff cell `$procdff$623' with positive edge clock and positive level reset.
+Creating register for signal `\pulsecounter.\count_o' using process `\pulsecounter.$proc$./pulsecounter.v:14$209'.
+  created $adff cell `$procdff$624' with positive edge clock and positive level reset.
+Creating register for signal `\pulsecounter.\s_anterior' using process `\pulsecounter.$proc$./pulsecounter.v:14$209'.
+  created $adff cell `$procdff$625' with positive edge clock and positive level reset.
+Creating register for signal `\flipflop.\dato_o' using process `\flipflop.$proc$./flipflop.v:8$1'.
+  created $adff cell `$procdff$626' with positive edge clock and positive level reset.
+Creating register for signal `\vga.\pixelx_o' using process `\vga.$proc$./vga.v:19$251'.
+  created $adff cell `$procdff$627' with positive edge clock and positive level reset.
+Creating register for signal `\vga.\pixely_o' using process `\vga.$proc$./vga.v:19$251'.
+  created $adff cell `$procdff$628' with positive edge clock and positive level reset.
+
+9.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+9.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `\pad.$proc$./pad.v:14$242'.
+Removing empty process `pad.$proc$./pad.v:14$242'.
+Found and cleaned up 8 empty switches in `\ballhitbox.$proc$./ballhitbox.v:42$229'.
+Removing empty process `ballhitbox.$proc$./ballhitbox.v:42$229'.
+Found and cleaned up 2 empty switches in `\pulsecounter.$proc$./pulsecounter.v:14$209'.
+Removing empty process `pulsecounter.$proc$./pulsecounter.v:14$209'.
+Found and cleaned up 2 empty switches in `\render.$proc$./render.v:83$129'.
+Removing empty process `render.$proc$./render.v:83$129'.
+Found and cleaned up 6 empty switches in `\render.$proc$./render.v:47$127'.
+Removing empty process `render.$proc$./render.v:47$127'.
+Removing empty process `flipflop.$proc$./flipflop.v:8$1'.
+Found and cleaned up 2 empty switches in `\vga.$proc$./vga.v:19$251'.
+Removing empty process `vga.$proc$./vga.v:19$251'.
+Cleaned up 23 empty switches.
+
+9.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module pad.
+Optimizing module ballhitbox.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module flipflop.
+Optimizing module top.
+Optimizing module vga.
+
+9.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module pad.
+Optimizing module ballhitbox.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module flipflop.
+Optimizing module top.
+Optimizing module vga.
+
+9.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \pad..
+Finding unused cells or wires in module \ballhitbox..
+Finding unused cells or wires in module \pulsecounter..
+Finding unused cells or wires in module \render..
+Finding unused cells or wires in module \flipflop..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module \vga..
+Removed 4 unused cells and 186 unused wires.
+
+9.6. Executing CHECK pass (checking for obvious problems).
+Checking module ballhitbox...
+Checking module flipflop...
+Checking module pad...
+Checking module pulsecounter...
+Checking module render...
+Checking module top...
+Checking module vga...
+Found and reported 0 problems.
+
+9.7. Executing OPT pass (performing simple optimizations).
+
+9.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ballhitbox.
+Optimizing module flipflop.
+Optimizing module pad.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module top.
+Optimizing module vga.
+
+9.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ballhitbox'.
+Finding identical cells in module `\flipflop'.
+Finding identical cells in module `\pad'.
+Finding identical cells in module `\pulsecounter'.
+Finding identical cells in module `\render'.
+Finding identical cells in module `\top'.
+Finding identical cells in module `\vga'.
+Removed a total of 68 cells.
+
+9.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ballhitbox..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$287: \estado_juego -> 1'1
+      Replacing known input bits on port A of cell $procmux$283: \estado_juego -> 1'0
+      Replacing known input bits on port A of cell $procmux$281: \estado_juego -> 1'0
+  Analyzing evaluation results.
+Running muxtree optimizer on module \flipflop..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \pad..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \pulsecounter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \render..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$419.
+    dead port 1/2 on $mux $procmux$422.
+    dead port 1/2 on $mux $procmux$425.
+    dead port 1/2 on $mux $procmux$428.
+    dead port 2/2 on $mux $procmux$431.
+    dead port 1/2 on $mux $procmux$437.
+    dead port 1/2 on $mux $procmux$440.
+    dead port 1/2 on $mux $procmux$443.
+    dead port 1/2 on $mux $procmux$446.
+    dead port 2/2 on $mux $procmux$449.
+    dead port 1/2 on $mux $procmux$455.
+    dead port 1/2 on $mux $procmux$458.
+    dead port 1/2 on $mux $procmux$461.
+    dead port 1/2 on $mux $procmux$464.
+    dead port 2/2 on $mux $procmux$467.
+    dead port 1/2 on $mux $procmux$473.
+    dead port 1/2 on $mux $procmux$476.
+    dead port 1/2 on $mux $procmux$479.
+    dead port 2/2 on $mux $procmux$482.
+    dead port 1/2 on $mux $procmux$488.
+    dead port 1/2 on $mux $procmux$491.
+    dead port 1/2 on $mux $procmux$494.
+    dead port 2/2 on $mux $procmux$497.
+    dead port 1/2 on $mux $procmux$503.
+    dead port 1/2 on $mux $procmux$506.
+    dead port 1/2 on $mux $procmux$509.
+    dead port 2/2 on $mux $procmux$512.
+    dead port 1/2 on $mux $procmux$518.
+    dead port 1/2 on $mux $procmux$521.
+    dead port 2/2 on $mux $procmux$524.
+    dead port 1/2 on $mux $procmux$530.
+    dead port 1/2 on $mux $procmux$533.
+    dead port 2/2 on $mux $procmux$536.
+    dead port 1/2 on $mux $procmux$542.
+    dead port 1/2 on $mux $procmux$545.
+    dead port 2/2 on $mux $procmux$548.
+    dead port 1/2 on $mux $procmux$554.
+    dead port 2/2 on $mux $procmux$557.
+    dead port 1/2 on $mux $procmux$563.
+    dead port 2/2 on $mux $procmux$566.
+    dead port 1/2 on $mux $procmux$572.
+    dead port 2/2 on $mux $procmux$575.
+    dead port 2/2 on $mux $procmux$581.
+    dead port 2/2 on $mux $procmux$587.
+    dead port 2/2 on $mux $procmux$593.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \vga..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 45 multiplexer ports.
+
+9.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ballhitbox.
+  Optimizing cells in module \flipflop.
+  Optimizing cells in module \pad.
+  Optimizing cells in module \pulsecounter.
+  Optimizing cells in module \render.
+  Optimizing cells in module \top.
+  Optimizing cells in module \vga.
+Performed a total of 0 changes.
+
+9.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ballhitbox'.
+Finding identical cells in module `\flipflop'.
+Finding identical cells in module `\pad'.
+Finding identical cells in module `\pulsecounter'.
+Finding identical cells in module `\render'.
+Finding identical cells in module `\top'.
+Finding identical cells in module `\vga'.
+Removed a total of 12 cells.
+
+9.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ballhitbox..
+Finding unused cells or wires in module \flipflop..
+Finding unused cells or wires in module \pad..
+Finding unused cells or wires in module \pulsecounter..
+Finding unused cells or wires in module \render..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module \vga..
+Removed 0 unused cells and 123 unused wires.
+
+9.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ballhitbox.
+Optimizing module flipflop.
+Optimizing module pad.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module top.
+Optimizing module vga.
+
+9.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ballhitbox..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \flipflop..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \pad..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \pulsecounter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \render..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \vga..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+9.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ballhitbox.
+  Optimizing cells in module \flipflop.
+  Optimizing cells in module \pad.
+  Optimizing cells in module \pulsecounter.
+  Optimizing cells in module \render.
+  Optimizing cells in module \top.
+  Optimizing cells in module \vga.
+Performed a total of 0 changes.
+
+9.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ballhitbox'.
+Finding identical cells in module `\flipflop'.
+Finding identical cells in module `\pad'.
+Finding identical cells in module `\pulsecounter'.
+Finding identical cells in module `\render'.
+Finding identical cells in module `\top'.
+Finding identical cells in module `\vga'.
+Removed a total of 0 cells.
+
+9.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ballhitbox..
+Finding unused cells or wires in module \flipflop..
+Finding unused cells or wires in module \pad..
+Finding unused cells or wires in module \pulsecounter..
+Finding unused cells or wires in module \render..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module \vga..
+
+9.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ballhitbox.
+Optimizing module flipflop.
+Optimizing module pad.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module top.
+Optimizing module vga.
+
+9.7.14. Finished OPT passes. (There is nothing left to do.)
+
+9.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 25 bits (of 32) from port B of cell ballhitbox.$le$./ballhitbox.v:24$212 ($le).
+Removed top 25 bits (of 32) from port B of cell ballhitbox.$add$./ballhitbox.v:24$215 ($add).
+Removed top 21 bits (of 32) from port Y of cell ballhitbox.$add$./ballhitbox.v:24$215 ($add).
+Removed top 21 bits (of 32) from port B of cell ballhitbox.$le$./ballhitbox.v:24$216 ($le).
+Removed top 22 bits (of 32) from port B of cell ballhitbox.$ge$./ballhitbox.v:25$218 ($ge).
+Removed top 25 bits (of 32) from port B of cell ballhitbox.$add$./ballhitbox.v:25$221 ($add).
+Removed top 21 bits (of 32) from port Y of cell ballhitbox.$add$./ballhitbox.v:25$221 ($add).
+Removed top 21 bits (of 32) from port B of cell ballhitbox.$le$./ballhitbox.v:25$222 ($le).
+Removed top 6 bits (of 10) from port B of cell ballhitbox.$le$./ballhitbox.v:30$228 ($le).
+Removed top 24 bits (of 25) from port B of cell ballhitbox.$add$./ballhitbox.v:60$232 ($add).
+Removed top 3 bits (of 22) from port B of cell ballhitbox.$eq$./ballhitbox.v:67$233 ($eq).
+Removed top 6 bits (of 10) from port B of cell ballhitbox.$le$./ballhitbox.v:89$237 ($le).
+Removed top 1 bits (of 10) from port B of cell ballhitbox.$ge$./ballhitbox.v:92$238 ($ge).
+Removed top 21 bits (of 22) from port B of cell ballhitbox.$add$./ballhitbox.v:104$241 ($add).
+Removed top 21 bits (of 32) from wire ballhitbox.$add$./ballhitbox.v:24$215_Y.
+Removed top 21 bits (of 32) from wire ballhitbox.$add$./ballhitbox.v:25$221_Y.
+Removed top 1 bits (of 20) from port B of cell pad.$eq$./pad.v:19$243 ($eq).
+Removed top 8 bits (of 10) from port B of cell pad.$gt$./pad.v:22$244 ($gt).
+Removed top 8 bits (of 10) from port B of cell pad.$sub$./pad.v:23$246 ($sub).
+Removed top 23 bits (of 32) from port B of cell pad.$lt$./pad.v:26$247 ($lt).
+Removed top 8 bits (of 10) from port B of cell pad.$add$./pad.v:27$249 ($add).
+Removed top 19 bits (of 20) from port B of cell pad.$add$./pad.v:30$250 ($add).
+Removed top 3 bits (of 4) from port B of cell pulsecounter.$add$./pulsecounter.v:27$211 ($add).
+Removed top 28 bits (of 32) from port B of cell render.$sub$./render.v:17$2 ($sub).
+Removed top 21 bits (of 32) from port Y of cell render.$sub$./render.v:17$2 ($sub).
+Removed top 28 bits (of 32) from port B of cell render.$add$./render.v:17$4 ($add).
+Removed top 21 bits (of 32) from port Y of cell render.$add$./render.v:17$4 ($add).
+Removed top 21 bits (of 32) from port B of cell render.$le$./render.v:17$5 ($le).
+Removed top 28 bits (of 32) from port B of cell render.$sub$./render.v:18$7 ($sub).
+Removed top 21 bits (of 32) from port Y of cell render.$sub$./render.v:18$7 ($sub).
+Removed top 28 bits (of 32) from port B of cell render.$add$./render.v:18$10 ($add).
+Removed top 21 bits (of 32) from port Y of cell render.$add$./render.v:18$10 ($add).
+Removed top 21 bits (of 32) from port B of cell render.$le$./render.v:18$11 ($le).
+Removed top 27 bits (of 32) from port B of cell render.$ge$./render.v:20$13 ($ge).
+Removed top 26 bits (of 32) from port B of cell render.$le$./render.v:20$14 ($le).
+Removed top 25 bits (of 32) from port B of cell render.$add$./render.v:21$18 ($add).
+Removed top 21 bits (of 32) from port Y of cell render.$add$./render.v:21$18 ($add).
+Removed top 21 bits (of 32) from port B of cell render.$le$./render.v:21$19 ($le).
+Removed top 22 bits (of 32) from port B of cell render.$ge$./render.v:23$21 ($ge).
+Removed top 22 bits (of 32) from port B of cell render.$le$./render.v:23$22 ($le).
+Removed top 25 bits (of 32) from port B of cell render.$add$./render.v:24$26 ($add).
+Removed top 21 bits (of 32) from port Y of cell render.$add$./render.v:24$26 ($add).
+Removed top 21 bits (of 32) from port B of cell render.$le$./render.v:24$27 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:27$29 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:27$30 ($le).
+Removed top 27 bits (of 32) from port B of cell render.$ge$./render.v:27$32 ($ge).
+Removed top 27 bits (of 32) from port B of cell render.$le$./render.v:27$34 ($le).
+Removed top 26 bits (of 32) from port B of cell render.$ge$./render.v:28$39 ($ge).
+Removed top 25 bits (of 32) from port B of cell render.$le$./render.v:28$41 ($le).
+Removed top 25 bits (of 32) from port B of cell render.$ge$./render.v:29$46 ($ge).
+Removed top 25 bits (of 32) from port B of cell render.$le$./render.v:29$48 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:30$50 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:30$51 ($le).
+Removed top 27 bits (of 32) from port B of cell render.$ge$./render.v:30$53 ($ge).
+Removed top 26 bits (of 32) from port B of cell render.$le$./render.v:30$55 ($le).
+Removed top 25 bits (of 32) from port B of cell render.$ge$./render.v:31$60 ($ge).
+Removed top 25 bits (of 32) from port B of cell render.$le$./render.v:31$62 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:32$64 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:32$65 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:37$78 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:37$79 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:40$99 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:40$100 ($le).
+Removed top 23 bits (of 32) from port B of cell render.$ge$./render.v:42$113 ($ge).
+Removed top 23 bits (of 32) from port B of cell render.$le$./render.v:42$114 ($le).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$395_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$396_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$397_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$398_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell render.$procmux$399_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell render.$procmux$400_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell render.$procmux$401_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$407_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$408_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$409_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell render.$procmux$410_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell render.$procmux$411_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell render.$procmux$412_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell render.$procmux$413_CMP0 ($eq).
+Removed top 21 bits (of 32) from wire render.$add$./render.v:17$4_Y.
+Removed top 21 bits (of 32) from wire render.$add$./render.v:18$10_Y.
+Removed top 21 bits (of 32) from wire render.$add$./render.v:21$18_Y.
+Removed top 21 bits (of 32) from wire render.$add$./render.v:24$26_Y.
+Removed top 9 bits (of 10) from port B of cell vga.$add$./vga.v:31$254 ($add).
+Removed top 9 bits (of 10) from port B of cell vga.$add$./vga.v:33$255 ($add).
+Removed top 22 bits (of 32) from port B of cell vga.$ge$./vga.v:38$256 ($ge).
+Removed top 22 bits (of 32) from port B of cell vga.$lt$./vga.v:38$257 ($lt).
+Removed top 23 bits (of 32) from port B of cell vga.$ge$./vga.v:39$260 ($ge).
+Removed top 23 bits (of 32) from port B of cell vga.$lt$./vga.v:39$261 ($lt).
+Removed top 1 bits (of 10) from port B of cell vga.$lt$./vga.v:40$265 ($lt).
+
+9.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ballhitbox..
+Finding unused cells or wires in module \flipflop..
+Finding unused cells or wires in module \pad..
+Finding unused cells or wires in module \pulsecounter..
+Finding unused cells or wires in module \render..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module \vga..
+Removed 0 unused cells and 6 unused wires.
+
+9.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+9.11. Executing OPT pass (performing simple optimizations).
+
+9.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ballhitbox.
+Optimizing module flipflop.
+Optimizing module pad.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module top.
+Optimizing module vga.
+
+9.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ballhitbox'.
+Finding identical cells in module `\flipflop'.
+Finding identical cells in module `\pad'.
+Finding identical cells in module `\pulsecounter'.
+Finding identical cells in module `\render'.
+Finding identical cells in module `\top'.
+Finding identical cells in module `\vga'.
+Removed a total of 0 cells.
+
+9.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ballhitbox..
+Finding unused cells or wires in module \flipflop..
+Finding unused cells or wires in module \pad..
+Finding unused cells or wires in module \pulsecounter..
+Finding unused cells or wires in module \render..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module \vga..
+
+9.11.4. Finished fast OPT passes.
+
+9.12. Printing statistics.
+
+=== ballhitbox ===
+
+   Number of wires:                 76
+   Number of wire bits:            612
+   Number of public wires:          19
+   Number of public wire bits:     136
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 70
+     $add                            6
+     $adff                           9
+     $eq                             2
+     $ge                             5
+     $le                             5
+     $logic_and                      4
+     $logic_or                       1
+     $mux                           38
+
+=== flipflop ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     $adff                           1
+
+=== pad ===
+
+   Number of wires:                 18
+   Number of wire bits:            129
+   Number of public wires:           6
+   Number of public wire bits:      34
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 14
+     $add                            2
+     $adff                           2
+     $eq                             1
+     $gt                             1
+     $logic_and                      2
+     $lt                             1
+     $mux                            4
+     $sub                            1
+
+=== pulsecounter ===
+
+   Number of wires:                 11
+   Number of wire bits:             23
+   Number of public wires:           6
+   Number of public wire bits:       9
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  8
+     $add                            1
+     $adff                           2
+     $eq                             1
+     $logic_and                      1
+     $mux                            2
+     $not                            1
+
+=== render ===
+
+   Number of wires:                172
+   Number of wire bits:            334
+   Number of public wires:          31
+   Number of public wire bits:      91
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                161
+     $add                            4
+     $eq                            18
+     $ge                            17
+     $le                            17
+     $logic_and                     43
+     $logic_not                      2
+     $logic_or                      50
+     $mux                            6
+     $pmux                           2
+     $sub                            2
+
+=== top ===
+
+   Number of wires:                 29
+   Number of wire bits:             89
+   Number of public wires:          29
+   Number of public wire bits:      89
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 12
+     ballhitbox                      1
+     flipflop                        5
+     pad                             2
+     pulsecounter                    2
+     render                          1
+     vga                             1
+
+=== vga ===
+
+   Number of wires:                 23
+   Number of wire bits:             86
+   Number of public wires:           7
+   Number of public wire bits:      25
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 21
+     $add                            2
+     $adff                           2
+     $eq                             2
+     $ge                             2
+     $logic_and                      3
+     $lt                             4
+     $mux                            6
+
+=== design hierarchy ===
+
+   top                               1
+     ballhitbox                      1
+     flipflop                        5
+     pad                             2
+     pulsecounter                    2
+     render                          1
+     vga                             1
+
+   Number of wires:                378
+   Number of wire bits:           1445
+   Number of public wires:         130
+   Number of public wire bits:     447
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                301
+     $add                           18
+     $adff                          24
+     $eq                            26
+     $ge                            24
+     $gt                             2
+     $le                            22
+     $logic_and                     56
+     $logic_not                      2
+     $logic_or                      51
+     $lt                             6
+     $mux                           62
+     $not                            2
+     $pmux                           2
+     $sub                            4
+
+9.13. Executing CHECK pass (checking for obvious problems).
+Checking module ballhitbox...
+Checking module flipflop...
+Checking module pad...
+Checking module pulsecounter...
+Checking module render...
+Checking module top...
+Checking module vga...
+Found and reported 0 problems.
+
+10. Executing HIERARCHY pass (managing design hierarchy).
+
+10.1. Analyzing design hierarchy..
+Top module:  \top
+Used module:     \pulsecounter
+Used module:     \flipflop
+Used module:     \ballhitbox
+Used module:     \pad
+Used module:     \render
+Used module:     \vga
+
+10.2. Analyzing design hierarchy..
+Top module:  \top
+Used module:     \pulsecounter
+Used module:     \flipflop
+Used module:     \ballhitbox
+Used module:     \pad
+Used module:     \render
+Used module:     \vga
+Removed 0 unused modules.
+
+11. Executing PROC pass (convert processes to netlists).
+
+11.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+11.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+11.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+11.4. Executing PROC_INIT pass (extract init attributes).
+
+11.5. Executing PROC_ARST pass (detect async resets in processes).
+
+11.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+11.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+11.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+11.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+11.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+11.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+11.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ballhitbox.
+Optimizing module flipflop.
+Optimizing module pad.
+Optimizing module pulsecounter.
+Optimizing module render.
+Optimizing module top.
+Optimizing module vga.
+
+12. Executing JSON backend.
+
+End of script. Logfile hash: c05a80a29a, CPU: user 0.10s system 0.01s, MEM: 13.74 MB peak
+Yosys 0.33+6 (git sha1 41b34a193, x86_64-conda-linux-gnu-cc 11.2.0 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -fdebug-prefix-map=/root/conda-eda/conda-eda/workdir/conda-env/conda-bld/yosys_1694128612374/work=/usr/local/src/conda/yosys-0.33_7_g41b34a193 -fdebug-prefix-map=/home/willdev/miniconda3/envs/digital=/usr/local/src/conda-prefix -fPIC -Os -fno-merge-constants)
+Time spent: 23% 7x opt_expr (0 sec), 18% 4x opt_merge (0 sec), ...
