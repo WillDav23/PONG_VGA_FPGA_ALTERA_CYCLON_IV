@@ -2,76 +2,76 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 12.909
-TNS   : 0.000
+Type  : Slow 1200mV 85C Model Setup 'pll25mhz:mi_pll|r_c0'
+Slack : -7.129
+TNS   : -488.959
 
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : 14.275
-TNS   : 0.000
+Slack : -3.183
+TNS   : -84.626
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : 0.452
+Slack : 0.434
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
+Type  : Slow 1200mV 85C Model Hold 'pll25mhz:mi_pll|r_c0'
 Slack : 0.453
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
-Slack : 9.786
-TNS   : 0.000
+Slack : -3.000
+TNS   : -56.532
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 19.717
-TNS   : 0.000
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll25mhz:mi_pll|r_c0'
+Slack : -1.487
+TNS   : -212.641
 
-Type  : Slow 1200mV 0C Model Setup 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 13.565
-TNS   : 0.000
+Type  : Slow 1200mV 0C Model Setup 'pll25mhz:mi_pll|r_c0'
+Slack : -6.683
+TNS   : -448.281
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : 14.774
-TNS   : 0.000
+Slack : -2.952
+TNS   : -77.048
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : 0.401
+Slack : 0.383
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
+Type  : Slow 1200mV 0C Model Hold 'pll25mhz:mi_pll|r_c0'
 Slack : 0.401
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
-Slack : 9.774
-TNS   : 0.000
+Slack : -3.000
+TNS   : -56.532
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 19.715
-TNS   : 0.000
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll25mhz:mi_pll|r_c0'
+Slack : -1.487
+TNS   : -212.641
 
-Type  : Fast 1200mV 0C Model Setup 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 16.592
-TNS   : 0.000
+Type  : Fast 1200mV 0C Model Setup 'pll25mhz:mi_pll|r_c0'
+Slack : -2.618
+TNS   : -135.410
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : 17.303
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 0.186
-TNS   : 0.000
+Slack : -0.821
+TNS   : -17.545
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'pll25mhz:mi_pll|r_c0'
 Slack : 0.187
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
-Slack : 9.435
-TNS   : 0.000
+Slack : -3.000
+TNS   : -41.365
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'mi_pll|altpll_inst|auto_generated|pll1|clk[0]'
-Slack : 19.796
-TNS   : 0.000
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll25mhz:mi_pll|r_c0'
+Slack : -1.000
+TNS   : -143.000
 
 ------------------------------------------------------------

@@ -206,7 +206,6 @@ always @(posedge clk or posedge rst) begin
         8'h41: btn_up2   <= 1'b1;  // A
         8'h53: btn_down1 <= 1'b1;  // S
         8'h44: btn_down2 <= 1'b1;  // D
-        
         default: begin
           // Si llega cualquier otro dato o el usuario suelta la tecla,
           // los botones se apagan automáticamente.

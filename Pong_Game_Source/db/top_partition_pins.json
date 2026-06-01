@@ -12,6 +12,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "clk_o",
+					"strict" : false
+				},
+				{
 					"name" : "r_o",
 					"strict" : false
 				},

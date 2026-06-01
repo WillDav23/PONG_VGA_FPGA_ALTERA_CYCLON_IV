@@ -1,141 +1,105 @@
 // filename: top_tb.v
-// brief: testbench de un blink para la placa de desarrollo Blackice
-// la cual tienen un reloj de hardware de 25 MHz (periodo 40 nS)
-
-// CONFIGURACIÓN DEL TIMESCALE
-// Tenga encuenta que: solo puede usar los enteros 1, 10, 100 en la escala de
-// s, ms, us, ns, ps, fs.
-// Para el time_unit se hará uso de 10 nS, en vista del perido del clock. el
-// time_precision, se pone según interés
-`timescale 1ns / 1ns  // <time_unit>/<time_precision
-
-// CONFIGURACIÓN DE LOS PARÁMETROS DEL RELOJ
-// Cada estado de reloj debe durar medio periodo, para este caso sería 20 nS,
-// como el time_unit es de 10 ns, entonces con 2 tiempos se puede representar
-// la duración de cada reloj.
-`ifndef TIME_UNIT
-`define TIME_UNIT 2
-`endif
-// `include "./top.v"
+// brief: Testbench Pong - Reloj FPGA: 50 MHz | UART: 9600 Baudios
+`timescale 1ns / 1ns
 
 module top_tb;
-  // Determinar el tamaño de los wire como de los estímulos
-  parameter integer INPUT_SIZE = 1;
-  parameter integer OUTPUT_SIZE = 4;
 
-  // Make a regular pulsing clock.
+  // 1. SEÑALES DEL TESTBENCH
   reg clk = 0;
-  always #(`TIME_UNIT) clk = !clk;
+  reg rst;
+  reg UART_RX;
 
-  // CLOCK STIMULUS
-  initial begin
-    #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
-  end
+  wire hsync_o;
+  wire vsync_o;
+  wire clk_o;
+  wire r_o;
+  wire g_o;
+  wire b_o;
 
-  // RESULT FOR DEVICE/DESIGN UNDER TEST
-  wire [OUTPUT_SIZE-1:0] probe;
+  // REGLAS DE TIEMPO (50 MHz -> Periodo = 20 ns -> Semiperiodo = 10 ns)
+  localparam CLK_PERIOD = 20;
+  always #(CLK_PERIOD / 2) clk = !clk;
 
-  // DEVICE/DESIGN UNDER TEST
+  // TIEMPO DE BIT UART (1s / 9600 baudios = 104,166 ns)
+  localparam BIT_PERIOD_UART = 104166;
+
+  // 2. INSTANCIACIÓN DEL DISEÑO BAJO PRUEBA (DUT)
   top dut (
-      .clk (clk),
-      .leds(probe)
+      .clk    (clk),
+      .rst    (rst),
+      .UART_RX(UART_RX),
+      .hsync_o(hsync_o),
+      .vsync_o(vsync_o),
+      .clk_o  (clk_o),
+      .r_o    (r_o),
+      .g_o    (g_o),
+      .b_o    (b_o)
   );
 
-  // WAVES IN VCD TO OPEN IN GTKWAVE
+  // 3. ARCHIVOS VCD PARA GTKWAVE
   initial begin
+    $dumpfile("top_tb.vcd");
     $dumpvars(0, top_tb);
   end
 
-  // // STIMULUS 1
-  // reg [INPUT_SIZE-1:0] inputs;
-  // initial begin
-  //   inputs = 0;
-  //   #(`TIME_UNIT * 1) inputs = 1;
-  //   #(`TIME_UNIT * 1) $finish();  // [stop(), $finish()]
-  // end
+  // 4. SECUENCIA DE ESTÍMULOS (Configuración del tiempo de simulación)
+  initial begin
+    // Estado inicial
+    rst = 1;
+    UART_RX = 1; // Línea en reposo (idle)
+    
+    // Mantener reset por 200 ns
+    #(CLK_PERIOD * 10);
+    rst = 0;
+    #(CLK_PERIOD * 5);
 
-  // initial
-  // begin
-  //   #2E9 $finish(); // [stop(), $finish()]
-  // end
+    $display("[TB] Reset liberado. Iniciando transmisión UART a 9600 baudios...");
 
-  // // STIMULUS 1
-  // reg a = 0, b = 0;
-  // initial begin
-  //   #(`TIME_UNIT * 17) a = 1;
-  //   b = 1;
-  //   #(`TIME_UNIT * 11) a = 1;
-  //   b = 0;
-  //   #(`TIME_UNIT * 29) a = 1;
-  //   b = 1;
-  //   #(`TIME_UNIT * 11) a = 1;
-  //   b = 0;
-  //   #(`TIME_UNIT * 100) $finish();  // [stop(), $finish()]
-  // end
-  //
-  // // STIMULUS 2
-  // reg [INPUT_SIZE-1:0] inputs;
-  // // inputs[2] inputs[1] inputs[1]
-  // integer i;
-  // initial
-  // begin
-  //   // inputs = 0;
-  //   for (i=0; i<2**INPUT_SIZE; i=i+1) // 2 elevado a la INPUT_SIZE , en el ejemplo 2^3 = 8 combinaciones*/
-  //   begin */
-  //     inputs = i;
-  // #(`TIME_UNIT * 1 );
-  //   end
-  // end
+    // --- ENVIAR 'W' (8'h57) -> Mover raqueta 1 arriba
+    // Cada byte tarda aprox. 1.04 ms en transmitirse completamente
+    $display("[TB] Enviando 'W'...");
+    enviar_byte_uart(8'h57); 
+    #(CLK_PERIOD * 500); // Pequeña espera entre caracteres
 
-  // // STIMULUS ARGS
-  // initial
-  // begin
-  //   if(! $value$plusargs("inputs=%b", inputs)) begin
-  //     $display("ERROR: please specify +inputs=<value> to start.");
-  //     $finish;
-  //   end
+    // --- ENVIAR 'D' (8'h44) -> Mover raqueta 2 abajo
+    $display("[TB] Enviando 'D'...");
+    enviar_byte_uart(8'h44);
+    #(CLK_PERIOD * 500);
 
-  //   wait (outs) $display("outs = %d", outs);
-  //   #1
-  //   $finish;
-  // end
+    // --- ENVIAR CARÁCTER REPOSO (8'h00) -> Apagar botones
+    $display("[TB] Enviando caracter nulo...");
+    enviar_byte_uart(8'h00);
 
-  // reg clk = 0;
-  // reg rst;
+    // --- TIEMPO FINAL DE SIMULACIÓN
+    // Modifica este valor para darle más o menos tiempo a la simulación.
+    // 12,000,000 ns = 12 milisegundos. Es suficiente para ver las 3 tramas UART 
+    // completas y aproximadamente el 70% de un frame de video VGA (que dura 16.6 ms).
+    $display("[TB] Dejando correr la simulación para capturar señales de video...");
+    #12000000; 
 
-  // // Transmisor
-  // reg [7:0] tx_data;
-  // reg tx_start;
-  // wire tx;
-  // wire tx_busy;
+    $display("[TB] Simulación terminada correctamente.");
+    $finish;
+  end
 
-  // // Receptor
-  // reg rx;
-  // wire [7:0] rx_data;
-  // wire rx_ready;
+  // 5. TAREA PARA ENVIAR PROTOCOLO UART RS-232 REAL
+  task enviar_byte_uart;
+    input [7:0] data;
+    integer i;
+    begin
+      // Bit de inicio (Start bit = 0)
+      UART_RX = 0;
+      #(BIT_PERIOD_UART);
 
-  // // Make a regular pulsing clock.
-  // always #(`TIME_UNIT) clk = !clk;
+      // 8 Bits de datos (LSB primero)
+      for (i = 0; i < 8; i = i + 1) begin
+        UART_RX = data[i];
+        #(BIT_PERIOD_UART);
+      end
 
-  // initial begin
-  //   rst = 0;
-  //   tx_data = 8'd68;
-  //   tx_start = 0;
-  //   #(`TIME_UNIT * 1) tx_start = 1;
-  //   #(`TIME_UNIT * 2) tx_start = 0;
-  //   #(`TIME_UNIT * 24) tx_data = 8'd92;
-  //   #(`TIME_UNIT * 10) tx_start = 1;  // Pasado 10 ticks tx_start = 1
-  //   #(`TIME_UNIT * 2) tx_start = 0;
-  //   #(`TIME_UNIT * 24) $finish();  // [stop(), $finish()]
-  // end
-
-  // // CLOCK STIMULUS
-  // initial begin
-  //   #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
-  // end
-
-  // MONITOR
-  // initial $monitor("Time: %t, out = %d", $time, probe);
+      // Bit de parada (Stop bit = 1)
+      UART_RX = 1;
+      #(BIT_PERIOD_UART);
+    end
+  endtask
 
 endmodule
-

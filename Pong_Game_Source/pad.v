@@ -7,7 +7,7 @@ module pad (
 );
 
   reg [19:0] contador;
-  parameter integer Velocidad    = 20'd4000000;
+  parameter integer Velocidad    = 20'd1000000;
   parameter integer TamanoPad    = 10'd80;
   parameter integer MaxPantallaY = 10'd480;
 
