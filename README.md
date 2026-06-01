@@ -151,7 +151,7 @@ El mapeo de señales desde el Header de la placa de expansión hacia los pines d
 
 Este archivo constituye la entidad de nivel superior (Top-Level Entity) del proyecto. Su función principal es la infraestructura y la interconexión síncrona de todos los submódulos del sistema, orquestando el flujo de datos entre las entradas físicas (botones de control), el procesamiento lógico/físico y las salidas analógicas hacia la interfaz VGA.
 
-![Diagrama de Bloques General](res/top.png)
+![Diagrama de Bloques General](res/RTL.png)
 
 ### 2. Controlador VGA (`vga.v`)
 Es el encargado de controlar los tiempos de la pantalla para una resolución estándar de **640x480 a 60 Hz**. No genera colores, sino que crea la "rejilla" invisible de coordenadas para saber dónde dibujar.
