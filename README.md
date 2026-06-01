@@ -36,11 +36,7 @@ Este proyecto fue desarrollado utilizando como base el material académico y las
 | `g_o` | PIN_67 | H1_6 | Canal de Color Verde VGA |
 | `b_o` | PIN_68 | H1_7 | Canal de Color Azul VGA |
 | `clk_o` | PIN_69 | H1_8 | Salida de reloj externa / Test |
-| `btn_up1` | PIN_70 | H1_9 | Control Jugador 1 - Mover Arriba |
-| `btn_down1` | PIN_71 | H1_10 | Control Jugador 1 - Mover Abajo |
-| `btn_up2` | PIN_72 | H1_11 | Control Jugador 2 - Mover Arriba |
-| `btn_down2` | PIN_73 | H1_12 | Control Jugador 2 - Mover Abajo |
-
+| `UART_RX` | PIN_74 | — | Señal relevante del módulo HC-06 |
 ---
 
 ## Explicación del Protocolo VGA
