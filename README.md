@@ -294,3 +294,34 @@ graph TD
     
     L & N --> O
 ```
+
+
+Aquí tienes la sección del módulo `uart_rx.v` formateada igual que los demás módulos del documento:
+
+---
+
+### 9. Receptor UART (`uart_rx.v`)
+Este módulo implementa un receptor serie asíncrono (UART) a 9600 baudios en formato 8N1, encargado de deserializar los comandos de control enviados inalámbricamente por el módulo Bluetooth HC-05/HC-06.
+
+* **Sincronizador de Dos Flip-Flops (2FF):** La señal `i_uart_rx` proveniente del módulo Bluetooth se pasa por dos registros en cascada (`q_uart` → `ck_uart`) antes de ser procesada, eliminando el riesgo de metaestabilidad al cruzar del dominio externo al dominio de reloj de la FPGA.
+* **Máquina de Estados (FSM):** Gestiona el ciclo completo de recepción de una trama UART de 10 bits. Parte del estado `IDLE` esperando el flanco descendente del bit de start, luego recorre implícitamente los estados `BIT_ZERO` a `BIT_SEVEN` mediante un incremento secuencial, y finaliza en `STOP_BIT` donde valida la trama.
+* **Muestreo en el Centro del Bit:** Al detectar el bit de start, el contador de baudios se carga con 1.5× el período de un baudio (`CLOCKS_PER_BAUD + CLOCKS_PER_BAUD/2`). Esto desplaza el punto de muestreo al centro exacto de cada bit de dato, maximizando el margen de ruido y garantizando lecturas estables.
+* **Registro de Desplazamiento:** Cada bit capturado se inserta por el MSB de `o_data` desplazando los anteriores hacia la derecha. Dado que UART transmite LSB primero, tras las 8 capturas el byte queda ensamblado correctamente en `o_data[7:0]`.
+* **Pulso de Dato Válido (`o_wr`):** Al completar la recepción del bit de stop, la señal `o_wr` se activa durante exactamente un ciclo de reloj, notificando al resto del sistema que `o_data` contiene un byte completo y listo para ser procesado.
+
+```mermaid
+graph TD
+    A[Flanco de reloj i_clk] --> B{¿state == IDLE?}
+
+    B -- Sí --> C{¿ck_uart == 0? <br> Bit de Start detectado}
+    C -- No --> D[Mantener IDLE <br> baud_counter = 0]
+    C -- Sí --> E[state = BIT_ZERO <br> baud_counter = 1.5 × CLOCKS_PER_BAUD]
+
+    B -- No --> F{¿zero_baud_counter?}
+    F -- No --> G[baud_counter = baud_counter - 1]
+    F -- Sí --> H[Muestrear ck_uart <br> Insertar en o_data por MSB]
+
+    H --> I{¿state == STOP_BIT?}
+    I -- No --> J[state = state + 1 <br> baud_counter = CLOCKS_PER_BAUD]
+    I -- Sí --> K[state = IDLE <br> baud_counter = 0 <br> o_wr = 1 por 1 ciclo]
+```
